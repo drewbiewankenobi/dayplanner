@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>INFINTE LOOP</title>
+</head>
+<body ng-controller="appController">
+
+<!-- HEADER -->
+<div>
+	<div class="header">
+		<h1>100% MAXIMUM DAYPLANNER</h1>
+	</div>
+	<div>
+		<button ng-click="moDaze($event)">Click fuh daze!</button>
+
+<!-- DAYS (iterated) -->
+
+<div ng-repeat="days in manyDays" style="display:inline-flex">	
+	<div>
+		<!-- CALENDAR PAGE -->	
+		<div class="datebox">
+			<div  ng-click="popIn(days)">
+				<ul><h3 class= "getBack">{{days.date}}
+				</h3>
+					<img src="http://cliparts.co/cliparts/yck/A6B/yckA6Broi.png"/>
+					<h4> THIS IS WHAT YOUR DAY LOOKS LIKE </h4>
+					<li ><span class="important">FINISH BY:</span> {{days.time}}
+						<ul style= "list-style-type:square"><li ng-repeat="events in days.toDo">{{events}}</li></ul>
+						</li>
+				</ul>
+			</div>
+		</div>
+		<!-- SUBMISSION BOX -->
+			<div ng-show="days.showMe" class="submitFormBox">
+				<h3 class="unBottom"> What do you need to do today?</h3>
+				<img class="imgPadder" src="http://icliparts.com/cliparts/6cp/5Ee/6cp5Ee7Ei.png">
+				<form>
+					<input placeholder="Enter the time of your event." ng-model="days.time">
+					<textarea ng-model="days.mytoDo" placeholder= "When done, press enter to add your event." ng-keypress="loadEvents($event, days)"></textarea>
+				</form>
+			</div>
+		
+
+	</div>
+</div>
+	</div>
+</div>
+</body>
+</html>
